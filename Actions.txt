@@ -1,0 +1,25 @@
+public class Actions_Class {
+
+	public static void main(String[] args) {
+		WebDriverManager.chromedriver().setup();
+		WebDriver driver = new ChromeDriver();
+
+		driver.get("https://demoqa.com/buttons");
+		driver.manage().window().maximize();
+
+		WebElement singleclick = driver.findElement(By.xpath("//button[text()='Click Me']"));
+
+		Actions act = new Actions(driver);
+		act.click(singleclick).perform();
+
+		WebElement rightclick = driver.findElement(By.xpath("//button[text()='Right Click Me']"));
+		act.contextClick(rightclick).perform();
+
+		WebElement doubleclick = driver.findElement(By.xpath("(//button[@type='button'])[2]"));
+		act.click(doubleclick).perform();
+
+		driver.navigate().to("https://www.amazon.in/");
+		WebElement move = driver.findElement(By.xpath("//a[text()='Sell on Amazon']"));
+		act.moveToElement(move).click(move).perform();
+	}
+}
